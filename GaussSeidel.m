@@ -1,4 +1,4 @@
-% Metodo del Gauss-Seidel
+% Metodo di Gauss-Seidel
 % x - soluzione calcolata
 % k - numero di iterazioni eseguite
 % resvec - vettore che contiene il residuo ad ogni iterazione
