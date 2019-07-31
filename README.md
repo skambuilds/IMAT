@@ -40,7 +40,7 @@ Il tool è stato provato con Matlab _R2019a_ senza riscontrare alcun problema.
 # IMAT (english)
 Iterative Methods Analysis Tool
 
-Tool Matlab for the resolution of linear systems with the iterative methods of Jacobi, Gauss-Seidel and the gradient (conjugate, and/or preconditioned)
+Matlab tool for the resolution of linear systems with the iterative methods of Jacobi, Gauss-Seidel and the gradient (conjugate, and/or preconditioned)
 
 The analysis tool has been designed in order to be simple and quick to use and also particularly flexible and customizable. When the program starts, the user can:
 
