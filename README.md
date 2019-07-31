@@ -17,8 +17,7 @@ Lo strumento di analisi è stato progettato allo scopo di essere di semplice e r
 
 6. visualizzare infine le seguenti **tipologie di grafici**:
    * grafici in scala logaritmica per i residui
-   * grafici a barre per i tempi e le iterazioni
-   * grafici a barre per gli errori relativi
+   * grafici a barre per i tempi e le iterazioni   
  
  ## Funzioni
  Le funzioni implementate sono le seguenti:
@@ -56,8 +55,7 @@ The analysis tool has been designed in order to be simple and quick to use and a
 
 6. finally display the following **types of charts**:
     * graphs in logarithmic scale for residuals
-    * bar graphs for times and iterations
-    * bar graphs for relative errors
+    * bar graphs for times and iterations    
  
  ## Functions
  The functions implemented are the following:
