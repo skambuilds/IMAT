@@ -34,6 +34,9 @@ Per utilizzare il tool è sufficiente eseguire il file **IterMethodTool.m** con 
 ## Test
 Il tool è stato provato con Matlab _R2019a_ senza riscontrare alcun problema.
 
+## Autori
+Alberto Pes, Giuseppe Bellisano
+
 ------------------------------------
 
 # IMAT (english)
@@ -71,3 +74,6 @@ To use the tool, simply run the **IterMethodTool.m** file with Matlab. After ent
 
 ## Test
 The tool was tested with Matlab _R2019a_ without encountering any problems.
+
+## Authors
+Alberto Pes, Giuseppe Bellisano
