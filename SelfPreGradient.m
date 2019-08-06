@@ -1,41 +1,52 @@
-% Metodo del gradiente classico precondizionato
-% x - soluzione calcolata
-% k - numero di iterazioni eseguite
-% resvec - vettore che contiene il residuo ad ogni iterazione
+% Classic preconditioned gradient method
+% x - solution (at step k)
+% k - step (number of iterations performed)
+% resvec - vector that contains the residual at each iteration
+
 function [x,k,resvec] = SelfPreGradient(A,b,tau,maxn,Rt,R,x)
-% Determino la dimensione della matrice
-n=size(A,1);
-% Inizializzo il vettore x0
-x0=100*ones(n,1);
-% Inizializzazione residuo
+% System size
+n = size(A,1);
+
+% Initialize the vector x0
+x0 = 100*ones(n,1);
+
+% Initialize the residue
 r = b - A*x;
-% Risoluzine di un sistema lineare
-y=Rt\r;
-z=R\y;
-% Inizializzazione contatore iterazioni
+
+% Resolution of a linear system
+y = Rt\r;
+z = R\y;
+
+% Iterations counter
 k = 0;
-% Avvio ciclo dell'algoritmo con condizione di controllo, posso scegliere
-% tra:
-% - controllo del residuo: norm(r)>tau*norm(b)
-% - condizione di Cauchy: norm(x-x0)>tau*norm(x)
-% Imposto comunque un numero di iterazioni massimo
-% Preallocazione risorse per il vettore residuo
+
+% Starting the algorithm cycle with control condition. You can choose between:
+% - residue control: norm(r) > tau*norm(b)
+% - condizione di Cauchy: norm(x-x0) > tau*norm(x)
+% I set however a maximum number of iterations
+% Preallocation of resources for the residual vector
 resvec=zeros(maxn,1);
-while(norm(x-x0)>tau*norm(x)) && (k<maxn)
-    x0=x;
-    k=k+1;
-    % Memorizzo la norma del residuo nel vettore
-    resvec(k)=norm(r);
-    % Ottimizzo calcolando solo una volta il prodotto matrice vettore:
+
+while(norm(x-x0) > tau*norm(x)) && (k<maxn)
+    x0 = x;
+    k = k+1;
+
+    % Memorize the norm of the residual in the vector
+    resvec(k) = norm(r);
+
+    % Optimize by calculating the carrier matrix product only once
     s = A*z; 
-    % Calcolo del passo:
+
+    % Step calculation
     alpha = (z'*r)/(z'*s);
-    % Calcolo nuovo soluzione
-    x=x0+alpha*z;
-    % Aggiornamento residuo
-    r=r-alpha*s;
-    % Risolvo il sistema Pz = r per k+1
-    y=R'\r;
-    z=R\y;
-    
+
+    % New solution
+    x = x0+alpha*z;
+
+    % Residue update
+    r = r-alpha*s;
+
+    % I solve the system Pz = r per k+1
+    y = R'\r;
+    z = R\y;
 end

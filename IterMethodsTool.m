@@ -1,58 +1,57 @@
-fprintf('---Strumento di analisi metodi iterativi---\n');
-fprintf('Premi Invio per iniziare\n');
+fprintf('---IMAT (Iterative methods analysis tool)---\n');
+fprintf('Press space to start\n');
 pause
 clear
-% Elenco descrizione matrici
-mat1 = '[1] - Matrice diagonalmente dominante sparsa';
-mat2 = '[2] - Matrice simmetrica definita positiva';
-mat3 = '[3] - Matrice simmetrica definita positiva e sparsa';
-mat4 = '[4] - Matrice di Poisson';
 
-% Scelta del tipo di matrice
+% List of matrices
+mat1 = '[1] - Diagonally dominant matrix sparse';
+mat2 = '[2] - Positive symmetric definite matrix';
+mat3 = '[3] - Positive and sparse symmetric definite matrix';
+mat4 = '[4] - Poisson''s matrix';
+
+% Choice of matrix type
 matrix_str = sprintf('%s\n%s\n%s\n%s\n%s\n',mat1,mat2,mat3,mat4);
 fprintf(matrix_str);
-choice_str = 'Quale matrice desideri utilizzare? ';
+choice_str = 'Choose the matrix to use ';
 mtype = input(choice_str);
 
-% Scelta degli step di dimensione
-steps_str = input('Inserisci gli step di dimensione che desideri testare separati da spazi o virgole: ', 's');
+steps_str = input('Enter the dimension steps you want to test separated by spaces or commas: ', 's');
 dimens = str2num(steps_str);
 steps = size(dimens,2);
 
-% Parametri per l'esecuzione dell'analisi
+% Parameters for performing the analysis
 tol = 1e-12;
 nmax = 200;
 omega = 0.5;
 
-fprintf('Di seguito le impostazioni per l''esecuzione del test:\n')
-fprintf('%d - Tolleranza\n', tol);
-fprintf('%d   - Numero massimo di iterazioni\n', nmax);
-fprintf('%d   - Parametro di rilassamento\n', omega);
-prompt_3 = sprintf('Vuoi modificarli? [S][N]');
+fprintf('list of settings used for performing the test:\n')
+fprintf('%d - Tolerance\n', tol);
+fprintf('%d  - Maximum number of iterations\n', nmax);
+fprintf('%d  - Relaxation parameter\n', omega);
+prompt_3 = sprintf('Vuoi modificarli? [Y][N]');
 
 r = input(prompt_3, 's');
 if isempty(r)
     r = 'N';
 end
-if strcmp(r,'s') || strcmp(r,'S')
-    prompt_n = 'Inserisci il valore di tolleranza: ';
+if strcmp(r,'s') || strcmp(r,'Y')
+    prompt_n = 'Enter the tolerance value: ';
     tol = input(prompt_n);
-    prompt_n = 'Inserisci il numero massimo di iterazioni: ';
+    prompt_n = 'Enter the maximum number of iterations: ';
     nmax = input(prompt_n);
-    prompt_n = 'Inserisci il valore omega per le operazioni di rilassamento: ';
+    prompt_n = 'Enter the omega value for relaxation operations: ';
     omega = input(prompt_n);
 end
 
+% We use an incomplete preconditioner - Cholesky
+% Required parameters:
+opts.type = 'ict'; % Select Cholesky with threshold dropping (ICT)
+opts.droptol = 1e-3; % Below which threshold values must be set to zero (small numbers become zero)
+% If you increase this value becomes more sparse preconditioner
+opts.shape = 'upper'; % choose the upper (RT)(R) format
+% opts is actually a struct that contains the parameters
 
-% Utilizziamo un pre-condizionatore - cholesky incompleta
-% Paramentri necessari:
-opts.type = 'ict'; % Seleziono la Cholesky incompleta con sogliatura - Cholesky with threshold dropping (ICT)
-opts.droptol = 1e-3; % Sotto quale soglia i valori devono essre posti a zero (i numeri piccoli diventano zero)
-% se aumento questo valore il precondizionatore diviene più sparso
-opts.shape = 'upper'; % scelgo il formato upper (RT)(R)
-% opts è di fatto una struct che contiene i parametri
-
-% Inizializzazione delle variabili
+% Initialization of variables
 time1 = zeros(steps,1);
 time1p = zeros(steps,1);
 time2 = zeros(steps,1);
@@ -110,96 +109,98 @@ error6 = zeros(steps,1);
 
 for i=1:steps
     
-    fprintf('Iterazione [%d] con dimensionamento [%d]\n', i, dimens(i));
+    fprintf ('Iteration [%d] with dimensioning [%d]\n', i, dimens(i));
     A = MatrixCreator(mtype,dimens(i));
     figure(i);
-    spy(A); % In blu gli elementi non nulli della matrice selezionata
+    spy(A); % In blue the non-zero elements of the selected matrix
+    titleTimeBar = sprintf('Sparsity pattern of the matrix with dim= %d', dimens(i));
+    title(titleTimeBar)   
     
-    % Costruzione del sistema lineare da risolvere
-    n = size(A,1);
-    % Impostazione del sistema, con soluzione pari ad un vettore di 1:
-    sol = ones(n,1);
-    b = A*sol;
-    % In alternativa scegliamo il termine noto con un vettore casuale di dimensione n:
-    % b = rand(n,1);
-    x0= zeros(n,1);
+    % Construction of the linear system to be solved
+    n = size (A, 1);
+    % System setting, with solution equal to a vector of 1:
+    sol = ones (n, 1);
+    b = A * sol;
+    % Alternatively we choose the known term with a random vector of size n:
+    % b = rand (n, 1);
+    x0 = zeros (n, 1);
     
-    % Matlab gradiente coniugato
+    % Matlab gradient conjugate
     tic
-    [x, flag, relres, iter, resvec] = pcg(A,b,tol,nmax,[],[],x0); %potremo anche non inserire tol e nmax perchè vengono impostati di default
+    [x, flag, relres, iter, resvec] = pcg (A, b, tol, nmax, [], [], x0); % we can also not insert tol and nmax because they are set by default
     time1(i) = toc;
-    error1(i) = norm(sol-x)/norm(sol); % calcolo errore relativo
+    error1(i) = norm(sol-x)/norm(sol); % relative error
     x1(i) = {x};
     iter1(i) = iter;
     resvec1(i) = {resvec};
     
-    % Valutare se eseguire la LU incompleta a seconda delle matrici scelte
-%     setup.type = 'crout';
-%     setup.milu = 'row';
-%     setup.droptol = 1e-3;
-%     setup.udiag = 1;
-%     [L,U] = ilu(A,setup);
+    % Evaluate whether to perform the incomplete LU according to the matrices chosen
+    % setup.type = 'crout';
+    % setup.milu = 'row';
+    % setup.droptol = 1e-3;
+    % setup.udiag = 1;
+    % [L,U] = ilu(A,setup);
     
-    % Matlab gradiente coniugato precondizionato
+    % Matlab conjugate gradient preconditioned
     R = ichol(A, opts);
     tic
     [x, flag, relres, iter, resvec] = pcg(A,b,tol,nmax,R',R,x0);
     time1p(i) = toc;
-    error1p(i) = norm(sol-x)/norm(sol); % calcolo errore relativo
+    error1p(i) = norm(sol-x)/norm(sol); % relative error
     x1p(i) = {x};
     iter1p(i) = iter;
     resvec1p(i) = {resvec};
     
-    % Gradiente classico o di massima discesa
+    % Method of steepest descent or stationary-phase method or saddle-point method
     tic
     [x, iter, resvec] = SelfGradient(A,b,tol,nmax,x0);
     time2(i) = toc;
-    error2(i) = norm(sol-x)/norm(sol); % calcolo errore relativo
+    error2(i) = norm(sol-x)/norm(sol); % relative error
     x2(i) = {x};
     iter2(i) = iter;
     resvec2(i) = {resvec};
     
-    % Gradiente classico precondizionato
+    % Classic preconditioned gradient
     tic
     [x, iter, resvec] = SelfPreGradient(A,b,tol,nmax,R',R,x0);
     time2p(i) = toc;
-    error2p(i) = norm(sol-x)/norm(sol); % calcolo errore relativo
+    error2p(i) = norm(sol-x)/norm(sol); % relative error
     x2p(i) = {x};
     iter2p(i) = iter;
     resvec2p(i) = {resvec};
     
-    % Gradiente coniugato
+    % Conjugate gradient
     tic
-    [x, iter, resvec] = SelfConiugGradient(A,b,tol,nmax,x0); %potremo anche non inserire tol e nmax perchè vengono impostati di default
+    [x, iter, resvec] = SelfConiugGradient(A,b,tol,nmax,x0); % we can also not insert tol and nmax because they are set by default
     time3(i) = toc;
-    error3(i) = norm(sol-x)/norm(sol); % calcolo errore relativo
+    error3(i) = norm(sol-x)/norm(sol); % relative error
     x3(i) = {x};
     iter3(i) = iter;
     resvec3(i) = {resvec};
     
-    % Gradiente coniugato precondizionato
+    % Preconditioned conjugate gradient
     tic
     [x, iter, resvec] = SelfPreConiugGradient(A,b,tol,nmax,R',R,x0);
     time3p(i) = toc;
-    error3p(i) = norm(sol-x)/norm(sol); % calcolo errore relativo
+    error3p(i) = norm(sol-x)/norm(sol); % relative error
     x3p(i) = {x};
     iter3p(i) = iter;
     resvec3p(i) = {resvec};
     
-    % Metodo di Jacobi
+    % Jacobi method
     tic
     [x, iter, resvec] = Jacobi(A,b,tol,nmax,x0);
     time4(i) = toc;
-    error4(i) = norm(sol-x)/norm(sol); % calcolo errore relativo
+    error4(i) = norm(sol-x)/norm(sol); % relative error
     x4(i) = {x};
     iter4(i) = iter;
     resvec4(i) = {resvec};
     
-    % Metodo di Gauss Seidel
+    % Gauss Seidel method
     tic
     [x, iter, resvec] = GaussSeidel(A,b,tol,nmax,x0);
     time5(i) = toc;
-    error5(i) = norm(sol-x)/norm(sol); % calcolo errore relativo
+    error5(i) = norm(sol-x)/norm(sol); % relative error
     x5(i) = {x};
     iter5(i) = iter;
     resvec5(i) = {resvec};   
@@ -220,7 +221,7 @@ T.SPCG = time3p;
 T.Jacobi = time4;
 T.GaussSeidel = time5;
 
-% Tabella tempi
+% Time table
 timeTable = struct2table(T)
 
 I.Dimensione = dimens';
@@ -233,7 +234,7 @@ I.SPCG = iter3p;
 I.Jacobi = iter4;
 I.GaussSeidel = iter5;
 
-% Tabella iterazioni
+% Iteration table
 iterTable = struct2table(I)
 
 E.Dimensione = (dimens)';
@@ -249,8 +250,7 @@ E.GaussSeidel = error5;
 % Tabella errori
 errorTable = struct2table(E)
 
-
-% Grafici residui
+% Residual charts
 figure(steps+1)
 for i=1:steps
 
@@ -272,11 +272,11 @@ hold on
 semilogy(resvec5{i}, '-m', 'LineWidth',2)
 hold off
 legend('MCG','MPCG','SG','SPG','SCG','SPCG','Jacobi','GaussSeidel')
-titleGradPlot = sprintf('Residui Metodi Iterativi, DIM = %d', dimens(i));
+titleGradPlot = sprintf('Residual Iterative Methods, DIM = %d', dimens(i));
 title(titleGradPlot)
 end
 
-% Grafici a barre per iterazioni e tempi
+% Bar charts (iterations and times)
 figure(steps+2)
 for i=1:steps
     iterData = [iter1(i) iter1p(i) iter2(i) iter2p(i) iter3(i) iter3p(i) iter4(i) iter5(i)];
@@ -294,7 +294,7 @@ for i=1:steps
     b.CData(7,:) = [1,1,0];
     b.CData(8,:) = [1,0,1];
     ylim([0 nmax])
-    titleIterBar = sprintf('Iterazioni, DIM = %d', dimens(i));
+    titleIterBar = sprintf('Iteraction, DIM = %d', dimens(i));
     title(titleIterBar)
     
     timeData = [time1(i) time1p(i) time2(i) time2p(i) time3(i) time3p(i) time4(i) time5(i)];
@@ -302,7 +302,7 @@ for i=1:steps
     c = categorical({'MCG','MPCG','SG','SPG','SCG','SPCG','Jacobi','GaussSeidel'});
     c = reordercats(c,{'MCG','MPCG','SG','SPG','SCG','SPCG','Jacobi','GaussSeidel'});
     b=bar(ax1,c,timeData);
-    %     ylim([minTime maxTime])
+    % ylim([minTime maxTime])
     ylim([0.0001 0.4])
     b.FaceColor = 'flat';
     b.CData(1,:) = [0,1,0];
@@ -313,7 +313,6 @@ for i=1:steps
     b.CData(6,:) = [0,0,1];
     b.CData(7,:) = [1,1,0];
     b.CData(8,:) = [1,0,1];
-    titleTimeBar = sprintf('Tempi, DIM = %d', dimens(i));
+    titleTimeBar = sprintf('Time, DIM = %d', dimens(i));
     title(titleTimeBar)   
-   
 end
