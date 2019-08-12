@@ -10,7 +10,7 @@ n = size(A,1);
 % Initialize the vector x0
 x0 = 100*ones(n,1);
 
-% Initialize the residue
+% Initialize the residual
 r = b - A*x;
 
 % Resolution of a linear system
@@ -34,7 +34,7 @@ while(norm(x-x0) > tau*norm(x)) && (k<maxn)
     % Memorize the norm of the residual in the vector
     resvec(k) = norm(r);
 
-    % Optimize by calculating the carrier matrix product only once
+    % Optimize by calculating the matrix-vector product only once
     s = A*z; 
 
     % Step calculation
@@ -43,7 +43,7 @@ while(norm(x-x0) > tau*norm(x)) && (k<maxn)
     % New solution
     x = x0+alpha*z;
 
-    % Residue update
+    % Residual update
     r = r-alpha*s;
 
     % I solve the system Pz = r per k+1
