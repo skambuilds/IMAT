@@ -8,7 +8,7 @@ switch mtype
         if isempty(r)
             r = 'N';
         end
-        if strcmp(r,'s') || strcmp(r,'Y')
+        if strcmp(r,'y') || strcmp(r,'Y')
             prompt_dominante = 'Enter the dominant factor: ';
             m = input(prompt_dominant);
         end
@@ -25,7 +25,7 @@ switch mtype
         if isempty(r)
             r = 'N';
         end
-        if strcmp(r,'s') || strcmp(r,'Y')
+        if strcmp(r,'y') || strcmp(r,'Y')
             prompt_rcond = 'Enter the reciprocal of the condition number (es. 0.01 per 100): ';
             rcond = input(prompt_rcond);
         end
@@ -39,7 +39,7 @@ switch mtype
         if isempty(r)
             r = 'N';
         end
-        if strcmp(r,'s') || strcmp(r,'Y')
+        if strcmp(r,'y') || strcmp(r,'Y')
             prompt_tau = 'Enter the sparse percentage (0.1 to get 10% of non-null elements): ';
             tau = input(prompt_tau);
             prompt_rcond = 'Enter the reciprocal of the condition number (eg 0.01 for 100): ';
