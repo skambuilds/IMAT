@@ -17,7 +17,7 @@ r = b - A*x;
 k = 0;
 
 % Starting the algorithm cycle with control condition. You can choose between:
-% - residue control: norm(r) > tau*norm(b)
+% - residual control: norm(r) > tau*norm(b)
 % - Cauchy condition: norm(x-x0) >t au*norm(x)
 % I set however a maximum number of iterations
 % Preallocation of resources for the residual vector
@@ -30,7 +30,7 @@ while(norm(x-x0) > tau*norm(x)) && (k<maxn)
     % % Storing the residue
     resvec(k) = norm(r);
 
-    % Optimize by calculating the carrier matrix product only once
+    % Optimize by calculating the matrix-vector product only once
     s = A*r; 
 
     % Step calculation
@@ -39,6 +39,6 @@ while(norm(x-x0) > tau*norm(x)) && (k<maxn)
     % New solution
     x = x0+alpha*r;
 
-    % Residue update
+    % Residual update
     r = r-alpha*s; 
 end
