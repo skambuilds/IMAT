@@ -1,29 +1,32 @@
-% Metodo di Gauss-Seidel
-% x - soluzione calcolata
-% k - numero di iterazioni eseguite
-% resvec - vettore che contiene il residuo ad ogni iterazione
+% Gauss-Seidel method
+% x - solution (at step k)
+% k - step (number of iterations performed)
+% resvec - vector that contains the residual at each iteration
+
 function [x,k,resvec] = GaussSeidel(A,b,tau,maxn,x)
-% Individuo dimensione del sistema
-n=size(A,1);
-% Preallocazione risorse
-x0=100*ones(n,1);
-resvec=zeros(maxn,1);
-% Impostazione dello splitting additivo
+% System size
+n = size(A,1);
+
+% Resources pre-allocation
+x0 = 100*ones(n,1);
+resvec = zeros(maxn,1);
+
+% Setting the additive splitting
 P = tril(A);
 N = P - A;
-k=0;
-% Ciclo di iterazione con criterio di Cauchy
-while(norm(x-x0)>tau*norm(x)) && (k<maxn)
+k = 0;
+
+% Iteration cycle with Cauchy criterion
+while(norm(x-x0) > tau*norm(x)) && (k<maxn)
     x0 = x;
     k = k+1;
-    % Calcolo del residuo
+
+    % Calculation of the residue
     r = b-A*x;
-    % Memorizzazione del residuo
+
+    % Storing the residue
     resvec(k) = norm(r);
     
     step = N*x0+b;
     x = P\(step);
-    
 end
-
-
