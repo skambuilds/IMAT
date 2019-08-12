@@ -29,7 +29,7 @@ switch mtype
             prompt_rcond = 'Enter the reciprocal of the condition number (es. 0.01 per 100): ';
             rcond = input(prompt_rcond);
         end
-        A = sprandsym(n, 1, rcond, 1); % random simmetrica (con l'ultimo parametro specifico che sia definita positiva)
+        A = sprandsym(n, 1, rcond, 1); % random symmetric sparse (with the last specific parameter being positive definite)
             
     case 3
         tau = 0.05; % 5% of sparsity for the matrix
