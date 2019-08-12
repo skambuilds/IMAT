@@ -21,10 +21,10 @@ while(norm(x-x0) > tau*norm(x)) && (k<maxn)
     x0 = x;
     k = k+1;
 
-    % Calculation of the residue
+    % Calculation of the residual
     r = b-A*x;
 
-    % Storing the residue
+    % Storing the residual
     resvec(k) = norm(r);
     
     step = N*x0+b;
