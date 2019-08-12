@@ -24,11 +24,11 @@ tol = 1e-12;
 nmax = 200;
 omega = 0.5;
 
-fprintf('list of settings used for performing the test:\n')
+fprintf('List of settings used for performing the test:\n')
 fprintf('%d - Tolerance\n', tol);
 fprintf('%d - Maximum number of iterations\n', nmax);
 fprintf('%d - Relaxation parameter\n', omega);
-prompt_3 = sprintf('Do you want to change it? [Y][N]');
+prompt_3 = sprintf('Do you want to change these values? [Y][N]');
 
 r = input(prompt_3, 's');
 if isempty(r)
