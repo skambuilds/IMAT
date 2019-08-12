@@ -34,7 +34,7 @@ r = input(prompt_3, 's');
 if isempty(r)
     r = 'N';
 end
-if strcmp(r,'s') || strcmp(r,'Y')
+if strcmp(r,'y') || strcmp(r,'Y')
     prompt_n = 'Enter the tolerance value: ';
     tol = input(prompt_n);
     prompt_n = 'Enter the maximum number of iterations: ';
