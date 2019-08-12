@@ -37,7 +37,7 @@ while(norm(x-x0) > tau*norm(x)) && (k<maxn)
     % Memorize the norm of the residual in the vector
     resvec(k) = norm(r);
 
-    % Optimize by calculating the carrier matrix product only once
+    % Optimize by calculating the matrix-vector product only once
     s = A*p;
     delta = p'*s;
 
@@ -47,7 +47,7 @@ while(norm(x-x0) > tau*norm(x)) && (k<maxn)
     % New solution
     x = x0+alpha*p;
 
-    % Residue update
+    % Residual update
     r = r-alpha*s;
     y = R'\r;
     z = R\y;
