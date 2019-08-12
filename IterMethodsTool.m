@@ -26,9 +26,9 @@ omega = 0.5;
 
 fprintf('list of settings used for performing the test:\n')
 fprintf('%d - Tolerance\n', tol);
-fprintf('%d  - Maximum number of iterations\n', nmax);
-fprintf('%d  - Relaxation parameter\n', omega);
-prompt_3 = sprintf('Vuoi modificarli? [Y][N]');
+fprintf('%d - Maximum number of iterations\n', nmax);
+fprintf('%d - Relaxation parameter\n', omega);
+prompt_3 = sprintf('Do you want to change it? [Y][N]');
 
 r = input(prompt_3, 's');
 if isempty(r)
