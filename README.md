@@ -62,12 +62,12 @@ The analysis tool has been designed in order to be simple and quick to use and a
  
  ## Functions
  The functions implemented are the following:
- * **IterMethodsTool**: semi-automated function for:
-      * acquire the user input for the configuration of the problem
-      * make calls to the individual functions of the iterative methods
-      * memorize and display the results
- * **MatrixCreator**: function for creating matrices from different structure
- * **Miscellaneous**: specific functions for individual iterative methods
+  * **IterMethodsTool**: semi-automated function for:
+    * acquire the user input for the configuration of the problem
+    * make calls to the individual functions of the iterative methods
+    * memorize and display the results
+  * **MatrixCreator**: function for creating matrices from different structure
+  * **Miscellaneous**: specific functions for individual iterative methods
 
 ## Installation
 To use the tool, simply run the **IterMethodTool.m** file with Matlab. After entering the parameters necessary for the calculation of the different methods, the results will be displayed on the screen with graphs.
