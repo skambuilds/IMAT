@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9499bc9a-90f7-43f9-8cd0-00401f3d35c0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/imat_gui.mlapp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IterMethodsTool.m" beforeDir="false" afterPath="$PROJECT_DIR$/IterMethodsTool.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/imat_gui.mlapp" beforeDir="false" afterPath="$PROJECT_DIR$/imat_gui.mlapp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -87,6 +85,7 @@
       <workItem from="1565703155418" duration="28000" />
       <workItem from="1565703604931" duration="6682000" />
       <workItem from="1566133933881" duration="4247000" />
+      <workItem from="1566180357773" duration="316000" />
     </task>
     <task id="LOCAL-00001" summary="add gui matlab">
       <created>1565725331999</created>
@@ -102,7 +101,14 @@
       <option name="project" value="LOCAL" />
       <updated>1566173649712</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="first graph ok!">
+      <created>1566180389725</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1566180389725</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -125,6 +131,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="add gui matlab" />
     <MESSAGE value="boh" />
-    <option name="LAST_COMMIT_MESSAGE" value="boh" />
+    <MESSAGE value="first graph ok!" />
+    <option name="LAST_COMMIT_MESSAGE" value="first graph ok!" />
   </component>
 </project>
