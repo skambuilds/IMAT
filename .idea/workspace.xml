@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9499bc9a-90f7-43f9-8cd0-00401f3d35c0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IterMethodsTool.m" beforeDir="false" afterPath="$PROJECT_DIR$/IterMethodsTool.m" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cute-cat-meowing-on-the-street.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/audio1.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/audio2.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/audio3.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/audio_click.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/audio_gong.mp3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/imat_gui.mlapp" beforeDir="false" afterPath="$PROJECT_DIR$/imat_gui.mlapp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -131,7 +135,14 @@
       <option name="project" value="LOCAL" />
       <updated>1566190282160</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="gui 0.1&#10;- graph complete (with sparse!)">
+      <created>1566208669457</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1566208669457</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -158,6 +169,7 @@
     <MESSAGE value="second graph ok!" />
     <MESSAGE value="third graph ok!" />
     <MESSAGE value="add stupid logo" />
-    <option name="LAST_COMMIT_MESSAGE" value="add stupid logo" />
+    <MESSAGE value="gui 0.1&#10;- graph complete (with sparse!)" />
+    <option name="LAST_COMMIT_MESSAGE" value="gui 0.1&#10;- graph complete (with sparse!)" />
   </component>
 </project>
