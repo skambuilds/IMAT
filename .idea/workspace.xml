@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9499bc9a-90f7-43f9-8cd0-00401f3d35c0" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IterMethodsTool.m" beforeDir="false" afterPath="$PROJECT_DIR$/IterMethodsTool.m" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/imat_gui.mlapp" beforeDir="false" afterPath="$PROJECT_DIR$/imat_gui.mlapp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
