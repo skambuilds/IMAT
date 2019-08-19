@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a7ced37e-cd88-48cf-a97a-78c31bca4223" name="Default Changelist" comment="add gui matlab" />
+    <list default="true" id="9499bc9a-90f7-43f9-8cd0-00401f3d35c0" name="Default Changelist" comment="boh">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/imat_gui.mlapp" beforeDir="false" afterPath="$PROJECT_DIR$/gui/imat_gui.mlapp" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +47,7 @@
     </option>
   </component>
   <component name="ProjectId" id="1P4BTQOYkSZ6WOHPt7ElwEuUboS" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="PropertiesComponent">
@@ -71,7 +74,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="a7ced37e-cd88-48cf-a97a-78c31bca4223" name="Default Changelist" comment="" />
+      <changelist id="9499bc9a-90f7-43f9-8cd0-00401f3d35c0" name="Default Changelist" comment="boh" />
       <created>1565123495928</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -82,6 +85,7 @@
       <workItem from="1565702474914" duration="680000" />
       <workItem from="1565703155418" duration="28000" />
       <workItem from="1565703604931" duration="6682000" />
+      <workItem from="1566133933881" duration="1282000" />
     </task>
     <task id="LOCAL-00001" summary="add gui matlab">
       <created>1565725331999</created>
