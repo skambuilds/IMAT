@@ -247,7 +247,7 @@ E.SPCG = error3p;
 E.Jacobi = error4;
 E.GaussSeidel = error5;
 
-% Tabella errori
+% Errors table
 errorTable = struct2table(E)
 
 % Residual charts
@@ -283,7 +283,7 @@ for i=1:steps
     ax1 = subplot(2,steps,i);
     c = categorical({'MCG','MPCG','SG','SPG','SCG','SPCG','Jacobi','GaussSeidel'});
     c = reordercats(c,{'MCG','MPCG','SG','SPG','SCG','SPCG','Jacobi','GaussSeidel'});
-    b=bar(ax1,c,iterData);
+    b = bar(ax1,c,iterData);
     b.FaceColor = 'flat';
     b.CData(1,:) = [0,1,0];
     b.CData(2,:) = [0,1,0];
@@ -294,14 +294,14 @@ for i=1:steps
     b.CData(7,:) = [1,1,0];
     b.CData(8,:) = [1,0,1];
     ylim([0 nmax])
-    titleIterBar = sprintf('Iteraction, DIM = %d', dimens(i));
+    titleIterBar = sprintf('Iteractions, DIM = %d', dimens(i));
     title(titleIterBar)
     
     timeData = [time1(i) time1p(i) time2(i) time2p(i) time3(i) time3p(i) time4(i) time5(i)];
     ax1 = subplot(2,steps,i+steps);
     c = categorical({'MCG','MPCG','SG','SPG','SCG','SPCG','Jacobi','GaussSeidel'});
     c = reordercats(c,{'MCG','MPCG','SG','SPG','SCG','SPCG','Jacobi','GaussSeidel'});
-    b=bar(ax1,c,timeData);
+    b = bar(ax1,c,timeData);
     % ylim([minTime maxTime])
     ylim([0.0001 0.4])
     b.FaceColor = 'flat';
